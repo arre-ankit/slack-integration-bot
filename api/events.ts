@@ -11,12 +11,7 @@ export async function POST(request: Request) {
 
   // See https://api.slack.com/events/url_verification
   if (requestType === "url_verification") {
-    return new Response(payload.challenge, { 
-      status: 200,
-      headers: {
-        'Content-Type': 'text/plain'
-      }
-    });
+    return new Response(payload.challenge, { status: 200 });
   }
 
   await verifyRequest({ requestType, request, rawBody });
