@@ -59,15 +59,6 @@ function parseCommand(text: string): string | null {
   return commandMatch ? commandMatch[1] : null;
 }
 
-// Function to handle app mentions
-async function handleAppMention(event: SlackEvent, botUserId: string) {
-  // Implement the logic for handling app mentions here
-  console.log("Handling app mention...");
-  // Example: Send a message back to the channel
-  // await sendSlackMessage(event.channel, "App mention received!");
-  return true;
-}
-
 export async function POST(request: Request) {
   const rawBody = await request.text();
   const payload = JSON.parse(rawBody);
@@ -84,18 +75,35 @@ export async function POST(request: Request) {
     const botUserId = await getBotId();
     const event = payload.event as SlackEvent;
 
-    // Handle only generic message events with text
-    if (event.type === "message" && !event.subtype && event.text) {
+    if (event.type === "app_mention") {
+      // Check if the mention contains a command
       const command = parseCommand(event.text);
+      if (command) {
+        waitUntil(handleCommand(event, command, botUserId));
+      } else {
+        waitUntil(handleNewAppMentionLangBase(event, botUserId));
+      }
+    }
+
+    if (event.type === "assistant_thread_started") {
+      waitUntil(assistantThreadMessageLangbase(event));
+    }
+
+    if (
+      event.type === "message" &&
+      !event.subtype &&
+      event.channel_type === "im" &&
+      !event.bot_id &&
+      !event.bot_profile &&
+      event.bot_id !== botUserId
+    ) {
+      // Check if direct message contains a command
+      const command = parseCommand(event.text ?? "");
       if (command) {
         waitUntil(handleCommand(event, command, botUserId));
       } else {
         waitUntil(handleNewAssistantMessageLangbase(event, botUserId));
       }
-    } else if (event.type === "app_mention") {
-      waitUntil(handleAppMention(event, botUserId));
-    } else if (event.type === "assistant_thread_started") {
-      waitUntil(assistantThreadMessageLangbase(event));
     }
 
     return new Response("Success!", { status: 200 });

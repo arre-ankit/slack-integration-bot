@@ -154,3 +154,9 @@ export const getBotId = async () => {
   }
   return botUserId;
 };
+
+export function extractCommands(messages: CoreMessage[], commandPrefix: string = '/') {
+  return messages
+    .filter(message => typeof message.content === 'string' && message.content.startsWith(commandPrefix))
+    .map(message => (message.content as string).slice(commandPrefix.length).trim());
+}
