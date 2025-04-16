@@ -6,18 +6,24 @@ import { assistantThreadMessageLangbase, handleNewAssistantMessageLangbase } fro
 
 // Function to handle commands
 async function handleCommand(event: SlackEvent, command: string, botUserId: string) {
-  // Extract the command from the message
-  switch (command.toLowerCase()) {
-    case 'build':
-      // Handle build command
-      console.log("Build command received");
-      // Implement your build functionality here
-      return await handleBuildCommand(event);
-    // Add more commands as needed
-    case 'run':
-      return await handleDeployCommand(event);
-    case 'status':
-      return await handleStatusCommand(event);
+  try {
+    // Extract the command from the message
+    switch (command.toLowerCase()) {
+      case 'build':
+        // Handle build command
+        console.log("Build command received");
+        return await handleBuildCommand(event);
+      case 'deploy':
+        return await handleDeployCommand(event);
+      case 'status':
+        return await handleStatusCommand(event);
+
+    }
+  } catch (error) {
+    console.error(`Error handling command /${command}:`, error);
+    // Send error message back to user
+    console.log("Error handling command /${command}:", error);
+    return false;
   }
 }
 
