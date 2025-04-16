@@ -20,6 +20,9 @@ importers:
       ai:
         specifier: ^4.1.46
         version: 4.1.47(react@19.0.0)(zod@3.24.2)
+      dotenv:
+        specifier: ^16.5.0
+        version: 16.5.0
       exa-js:
         specifier: ^1.4.10
         version: 1.4.10
@@ -29,6 +32,9 @@ importers:
       zod:
         specifier: ^3.24.2
         version: 3.24.2
+      zod-to-json-schema:
+        specifier: ^3.24.5
+        version: 3.24.5(zod@3.24.2)
     devDependencies:
       '@types/node':
         specifier: ^20.11.17
@@ -458,8 +464,8 @@ packages:
     resolution: {integrity: sha512-58lmxKSA4BNyLz+HHMUzlOEpg09FV+ev6ZMe3vJihgdxzgcwZ8VoEEPmALCZG9LmqfVoNMMKpttIYTVG6uDY7A==}
     engines: {node: '>=0.3.1'}
 
-  dotenv@16.4.7:
-    resolution: {integrity: sha512-47qPchRCykZC03FhkYAhrvwU4xDBFIj1QPqaarj6mdM/hgUzfPHcpkHJOn3mJAufFeeAxAzeGsr5X0M4k6fLZQ==}
+  dotenv@16.5.0:
+    resolution: {integrity: sha512-m/C+AwOAr9/W1UOIZUo232ejMNnJAJtYQjUbHoNTBNTJSvqzzDh7vnrei3o3r3m9blf6ZoDkvcw0VmozNRFJxg==}
     engines: {node: '>=12'}
 
   dunder-proto@1.0.1:
@@ -1261,8 +1267,8 @@ packages:
     resolution: {integrity: sha512-Ux4ygGWsu2c7isFWe8Yu1YluJmqVhxqK2cLXNQA5AcC3QfbGNpM7fu0Y8b/z16pXLnFxZYvWhd3fhBY9DLmC6Q==}
     engines: {node: '>=6'}
 
-  zod-to-json-schema@3.24.3:
-    resolution: {integrity: sha512-HIAfWdYIt1sssHfYZFCXp4rU1w2r8hVVXYIlmoa0r0gABLs5di3RCqPU5DDROogVz1pAdYBaz7HK5n9pSUNs3A==}
+  zod-to-json-schema@3.24.5:
+    resolution: {integrity: sha512-/AuWwMP+YqiPbsJx5D6TfgRTc4kTLjsh5SOcd4bLsfUg2RcEXrFMJl1DGgdHy2aCfsIA/cr/1JM0xcB2GZji8g==}
     peerDependencies:
       zod: ^3.24.1
 
@@ -1310,7 +1316,7 @@ snapshots:
     dependencies:
       '@ai-sdk/provider': 1.0.9
       '@ai-sdk/provider-utils': 2.1.10(zod@3.24.2)
-      zod-to-json-schema: 3.24.3(zod@3.24.2)
+      zod-to-json-schema: 3.24.5(zod@3.24.2)
     optionalDependencies:
       zod: 3.24.2
 
@@ -1734,7 +1740,7 @@ snapshots:
 
   diff@4.0.2: {}
 
-  dotenv@16.4.7: {}
+  dotenv@16.5.0: {}
 
   dunder-proto@1.0.1:
     dependencies:
@@ -1875,7 +1881,7 @@ snapshots:
   exa-js@1.4.10:
     dependencies:
       cross-fetch: 4.1.0
-      dotenv: 16.4.7
+      dotenv: 16.5.0
     transitivePeerDependencies:
       - encoding
 
@@ -2056,7 +2062,7 @@ snapshots:
 
   langbase@1.1.55(react@19.0.0):
     dependencies:
-      dotenv: 16.4.7
+      dotenv: 16.5.0
       openai: 4.94.0(zod@3.24.2)
       zod: 3.24.2
       zod-validation-error: 3.4.0(zod@3.24.2)
@@ -2440,7 +2446,7 @@ snapshots:
 
   yn@3.1.1: {}
 
-  zod-to-json-schema@3.24.3(zod@3.24.2):
+  zod-to-json-schema@3.24.5(zod@3.24.2):
     dependencies:
       zod: 3.24.2
 
