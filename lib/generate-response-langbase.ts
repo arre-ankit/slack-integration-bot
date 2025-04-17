@@ -44,15 +44,33 @@ export const generateResponseLangBase = async (
 		messages
 	});
 
-	
 
 	// Convert markdown to Slack mrkdwn format
 	console.log(commandResponse.completion)
 	if(commandResponse.completion.includes('build')){
+		/*
+			TODO: Send req to build agent
+			via https://preview.langbase.com/?input=make an agent that can summarize thread&integration=slack
+			we will send response like this:
+			Here is the link to agent that is building: https://preview.langbase.com/agent-name/id
+		*/
 		return 'Building...'
 	}
 
 	if(commandResponse.completion.includes('run')){
+		/*
+			TODO: Send req to run agent
+			first check in db does that agent exist
+			if not, return "Agent does not exist"
+			if yes, via https://preview.langbase.com/?input=run agent-name&integration=slack
+			we will send response like this:
+			Here is the output :
+			Output from agent:
+			```
+			Output from agent
+			```
+		*/
+
 		return 'Running...'
 	}
 
