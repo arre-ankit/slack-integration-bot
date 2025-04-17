@@ -10,7 +10,6 @@ export const generateResponseLangBase = async (
 	await langbase.pipes.create({
 		name: 'command-agent-slack',
 		description: 'A pipe that can execute commands',
-		model: 'gpt-4o-mini',
 		upsert: true,
 		messages: [
 			{
