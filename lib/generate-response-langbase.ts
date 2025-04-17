@@ -87,15 +87,7 @@ export const generateResponseLangBase = async (
 			Output from agent
 			```
 		*/
-		const api = `https://staging-api.langbase.com/arre-ankit/create-an-cb07c88f1a`;
-		const response = await fetch(api, {
-			method: 'POST',
-			headers: {
-				'Authorization': `Bearer user_4yszbFs8pEK2QnRD3UNcVqmU5QiYzqcWT1RCHBZgZ5YK2AHmXjDXuJrbxKfmFiQ6VZ1gqjoPrY1k3caKV8ctGqcE`,
-				'Content-Type': 'application/json'
-			},
-			body: JSON.stringify({"input":""})
-		});
+
 
 		return 'Running...'
 	}
