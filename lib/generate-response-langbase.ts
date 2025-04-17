@@ -88,8 +88,19 @@ export const generateResponseLangBase = async (
 			```
 		*/
 
+		const user_query = messages[messages.length - 1].content
+		
+		const api = `https://staging-api.langbase.com/arre-ankit/create-an-cb07c88f1a`;
+		const response = await fetch(api, {
+			method: 'POST',
+			headers: {
+				'Authorization': `Bearer ${process.env.STAGING_LANGBASE_API_KEY}`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({"input":user_query})
+		});
 
-		return 'Running...'
+		return 'Running... ' + JSON.stringify(response)
 	}
 
 	return commandResponse.completion;
