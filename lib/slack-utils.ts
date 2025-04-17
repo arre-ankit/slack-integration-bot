@@ -145,6 +145,15 @@ export async function getThreadLangBase(
   return result;
 }
 
+export async function getChannelMessages(channel_id: string) {
+  const { messages } = await client.conversations.history({
+    channel: channel_id,
+    limit: 5,
+  });
+
+  return messages;
+}
+
 
 export const getBotId = async () => {
   const { user_id: botUserId } = await client.auth.test();
@@ -154,9 +163,3 @@ export const getBotId = async () => {
   }
   return botUserId;
 };
-
-export function extractCommands(messages: CoreMessage[], commandPrefix: string = '/') {
-  return messages
-    .filter(message => typeof message.content === 'string' && message.content.startsWith(commandPrefix))
-    .map(message => (message.content as string).slice(commandPrefix.length).trim());
-}
