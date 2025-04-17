@@ -7,13 +7,24 @@ export const generateResponseLangBase = async (
   updateStatus?: (status: string) => void,
 ) => {
 
-    const response1 = await langbase.pipes.run({
-		name: 'support-answer-agent',
+    const commandResponse = await langbase.pipes.run({
+		name: 'command-agent',
 		stream: false,
 		messages
 	});
 
-  // Convert markdown to Slack mrkdwn format
-  console.log(response1.completion)
-  return response1.completion;
+	
+
+	// Convert markdown to Slack mrkdwn format
+	console.log(commandResponse.completion)
+	if(commandResponse.completion.includes('build')){
+		return 'Building...'
+	}
+
+	if(commandResponse.completion.includes('run')){
+		return 'Running...'
+	}
+
+	return commandResponse.completion;
+
 };
