@@ -67,7 +67,7 @@ export const generateResponseLangBase = async (
 
 
 
-		return 'Building... ' + user_query
+		return 'Building... ' + JSON.stringify(messages)
 	}
 
 	if(commandResponse.completion.includes('run')){
