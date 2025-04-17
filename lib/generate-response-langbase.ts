@@ -6,7 +6,6 @@ export const generateResponseLangBase = async (
   messages: Message[],
   updateStatus?: (status: string) => void,
 ) => {
-
 	await langbase.pipes.create({
 		name: 'command-agent-slack',
 		description: 'A pipe that can execute commands',
@@ -54,7 +53,21 @@ export const generateResponseLangBase = async (
 			we will send response like this:
 			Here is the link to agent that is building: https://preview.langbase.com/agent-name/id
 		*/
-		return 'Building...'
+
+		// const response = await fetch('https://preview.langbase.com/?input=make an agent that can summarize thread&integration=slack', {
+		// 	method: 'POST',
+		// 	body: JSON.stringify({
+		// 		input: "Thread/Conversation",
+		// 	})
+		// })
+
+		// console.log(response)
+
+		const user_query = messages[messages.length - 1].content
+
+
+
+		return 'Building... ' + user_query
 	}
 
 	if(commandResponse.completion.includes('run')){
@@ -62,7 +75,11 @@ export const generateResponseLangBase = async (
 			TODO: Send req to run agent
 			first check in db does that agent exist
 			if not, return "Agent does not exist"
-			if yes, via https://preview.langbase.com/?input=run agent-name&integration=slack
+			if yes, via  api.langbase.com/login/agentName
+			body:
+			{
+				input: "Thread/Conversation",
+			}
 			we will send response like this:
 			Here is the output :
 			Output from agent:
@@ -70,6 +87,15 @@ export const generateResponseLangBase = async (
 			Output from agent
 			```
 		*/
+		const api = `https://staging-api.langbase.com/arre-ankit/create-an-cb07c88f1a`;
+		const response = await fetch(api, {
+			method: 'POST',
+			headers: {
+				'Authorization': `Bearer user_4yszbFs8pEK2QnRD3UNcVqmU5QiYzqcWT1RCHBZgZ5YK2AHmXjDXuJrbxKfmFiQ6VZ1gqjoPrY1k3caKV8ctGqcE`,
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({"input":""})
+		});
 
 		return 'Running...'
 	}
